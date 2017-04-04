@@ -20,6 +20,8 @@ var Board = React.createClass({
                 }
             },
             componentWillMount() {
+                var n = new Note();
+                n.abc();
                 if (this.props.count) {
                     for(var i = 1; i <= this.props.count; i++)
                     {

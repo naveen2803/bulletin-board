@@ -2,38 +2,52 @@ import React from 'react'
 import './App.css'
 import Draggable from 'react-draggable'
 
-var Note = React.createClass({
-            getInitialState() {
-                return {editing: false}
-            },
+export default class Note extends React.Component {
+
+            constructor(props) {
+                super(props);
+                this.state = { editing: false };
+            }
+
             componentWillMount() {
                 this.style = {
                     right: this.randomBetween(0, window.innerWidth - 150, 'px'),
                     top: this.randomBetween(0, window.innerHeight -150, 'px')
                 }
-            },
+            }
+
             componentDidUpdate() {
                 if (this.state.editing) {
                     this.refs.newText.focus()
                     this.refs.newText.select()
                 }
-            },
+            }
+
+            abc() {
+                alert("method from NOTE class");
+            }
+
             shouldComponentUpdate(nextProps, nextState) {
                 return this.props.children !== nextProps.children || this.state !== nextState
-            },
+            }
+
             randomBetween(x, y, s) {
                 return (x + Math.ceil(Math.random() * (y-x))) + s
-            },
+            }
+
             edit() {
                 this.setState({editing: true})
-            },
+            }
+
             save() {
                 this.props.onChange(this.refs.newText.value, this.props.id)
                 this.setState({editing: false})
-            },
+            }
+
             remove() {
                 this.props.onRemove(this.props.id)
-            },
+            }
+
             renderForm() {
                 return (
                     <div className="note"
@@ -44,7 +58,8 @@ var Note = React.createClass({
                       <button onClick={this.save}>SAVE</button>
                     </div>
                 )
-            },
+            }
+
             renderDisplay() {
                 return (
                     <div className="note"
@@ -56,7 +71,8 @@ var Note = React.createClass({
                         </span>
                     </div>
                     )
-            },
+            }
+
             render() {
               return ( <Draggable>
                        {(this.state.editing) ? this.renderForm()
@@ -65,6 +81,6 @@ var Note = React.createClass({
                 )
 
             }
-        })
+        }
 
-export default Note
+//export default Note
