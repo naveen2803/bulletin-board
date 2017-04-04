@@ -23,10 +23,6 @@ export default class Note extends React.Component {
                 }
             }
 
-            abc() {
-                alert("method from NOTE class");
-            }
-
             shouldComponentUpdate(nextProps, nextState) {
                 return this.props.children !== nextProps.children || this.state !== nextState
             }
@@ -55,7 +51,7 @@ export default class Note extends React.Component {
                       <textarea ref="newText"
                                 defaultValue={this.props.children}>
                       </textarea>
-                      <button onClick={this.save}>SAVE</button>
+                      <button onClick={this.save.bind(this)}>SAVE</button>
                     </div>
                 )
             }
@@ -66,8 +62,8 @@ export default class Note extends React.Component {
                          style={this.style}>
                         <p>{this.props.children}</p>
                         <span>
-                          <button onClick={this.edit}>EDIT</button>
-                          <button onClick={this.remove}>X</button>
+                          <button onClick={this.edit.bind(this)}>EDIT</button>
+                          <button onClick={this.remove.bind(this)}>X</button>
                         </span>
                     </div>
                     )
@@ -82,5 +78,3 @@ export default class Note extends React.Component {
 
             }
         }
-
-//export default Note
